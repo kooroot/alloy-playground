@@ -1,0 +1,19 @@
+{
+  "name": "alloy-prototype",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Root orchestration for alloy-prototype. Runs anvil + Rust backend + Vite web app concurrently so `bun run dev` is a single entry point.",
+  "scripts": {
+    "dev": "concurrently -k -n anvil,backend,web -c yellow,magenta,cyan \"anvil --block-time 2\" \"cd backend && cargo run\" \"cd web && bun run dev\"",
+    "dev:anvil": "anvil --block-time 2",
+    "dev:backend": "cd backend && cargo run",
+    "dev:web": "cd web && bun run dev",
+    "codegen": "cd web && bun run codegen",
+    "check": "cd backend && cargo check && cd ../web && bun run typecheck",
+    "build": "cd backend && cargo build && cd ../web && bun run build",
+    "install:all": "bun install && cd web && bun install"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.0"
+  }
+}

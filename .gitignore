@@ -1,0 +1,25 @@
+backend/target/
+# Dotenv files — keep ALL of them out. `backend/env.example` (no leading
+# dot) is the checked-in template you copy to `.env` locally.
+backend/.env
+backend/.env.*
+# Foundry build artifacts — re-created by `forge build`. `sol!` reads
+# contracts/out/DemoToken.sol/DemoToken.json, so fresh clones must run
+# `cd backend/contracts && forge build` once before `cargo build`.
+backend/contracts/out/
+backend/contracts/cache/
+backend/contracts/broadcast/
+
+web/node_modules/
+web/dist/
+web/.vite/
+
+node_modules/
+
+.DS_Store
+*.log
+/tmp/
+
+# MCP tooling byproducts
+.playwright-mcp/
+.claude/

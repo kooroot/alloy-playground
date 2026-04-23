@@ -1,0 +1,37 @@
+[package]
+name = "alloy-prototype-backend"
+version = "0.1.0"
+edition = "2021"
+publish = false
+
+[dependencies]
+# alloy 2.x — pinned loosely to 2.0 for prototype; re-pin to exact version
+# if CI behavior drifts.
+alloy = { version = "2.0", features = [
+    "provider-http",   # HTTP JSON-RPC provider
+    "provider-ws",     # WebSocket provider (used from Phase 5)
+    "pubsub",          # event subscription (Phase 5)
+    "signer-local",    # PrivateKeySigner (Phase 3+)
+    "signer-mnemonic", # BIP-39 mnemonic generation (Phase 6 wallet demo)
+    "contract",        # sol! macro + contract bindings (Phase 4)
+    "sol-types",       # ABI encoding
+    "rpc-types-eth",   # EIP-1559 tx, Block, Log types
+    "node-bindings",   # anvil spawn helpers (tests + Phase 4 integration test)
+] }
+
+axum = { version = "0.8", features = ["ws", "macros"] }
+tokio = { version = "1", features = ["full"] }
+tower-http = { version = "0.6", features = ["cors", "trace"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+dotenvy = "0.15"
+eyre = "0.6"
+futures-util = "0.3"
+utoipa = { version = "5", features = ["axum_extras"] }
+utoipa-axum = "0.2"
+rand = "0.8"
+
+[dev-dependencies]
+reqwest = { version = "0.12", features = ["json"] }
