@@ -10,6 +10,7 @@
     "dev:web": "cd web && bun run dev",
     "codegen": "cd web && bun run codegen",
     "check": "cd backend && cargo check && cd ../web && bun run typecheck",
+    "test": "cd backend && cargo test",
     "build": "cd backend && cargo build && cd ../web && bun run build",
     "install:all": "bun install && cd web && bun install"
   },

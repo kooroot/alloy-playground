@@ -226,8 +226,15 @@ bun run codegen
 
 ```bash
 bun run check   # cargo check + tsc --noEmit
+bun run test    # cargo test — spawns anvil, drives the full ERC-20 flow over HTTP
 bun run build   # cargo build + vite build
 ```
+
+`bun run test` runs `backend/tests/erc20_flow.rs`, which spawns a fresh
+anvil via `alloy::node_bindings::Anvil`, builds the real `AppState` +
+`Router` against it, and walks `/api/health` → `/api/network` →
+`/api/account` → `/api/erc20/deploy` → `/api/erc20/transfer/send-local`
+→ `/api/erc20/balance` over reqwest. Requires `foundryup` (for `anvil`).
 
 ---
 

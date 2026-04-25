@@ -4,20 +4,12 @@
 //! phases add a WS provider, signers, tx build/send, ERC-20, and a
 //! /ws/erc20/transfers stream.
 
-mod contracts;
-mod error;
-mod openapi;
-mod routes;
-mod serde_helpers;
-mod state;
-
 use std::net::SocketAddr;
 
+use alloy_prototype_backend::{routes, state::AppState};
 use eyre::{Result, WrapErr};
 use tower_http::{cors::CorsLayer, trace::TraceLayer};
 use tracing_subscriber::{layer::SubscriberExt, util::SubscriberInitExt, EnvFilter};
-
-use crate::state::AppState;
 
 #[tokio::main]
 async fn main() -> Result<()> {
